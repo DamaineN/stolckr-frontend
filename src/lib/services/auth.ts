@@ -45,6 +45,11 @@ export interface VerifyTokenResponse {
 export class AuthService {
   static async login(credentials: LoginRequest): Promise<TokenResponse> {
     try {
+      // Debug: Log the exact URL being called
+      console.log('🔍 Debug - API Base URL:', process.env.NEXT_PUBLIC_API_URL)
+      console.log('🔍 Debug - Full login URL:', `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`)
+      console.log('🔍 Debug - Credentials:', { email: credentials.email, password: '***' })
+      
       const response = await apiClient.post('/auth/login', credentials)
       const tokens = handleApiResponse<TokenResponse>(response)
       
