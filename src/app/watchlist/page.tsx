@@ -222,9 +222,9 @@ export default function WatchlistPage() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center space-x-2">
                           <span className={`text-sm font-medium ${
-                            item.change >= 0 ? 'text-green-600' : 'text-red-600'
+                            (item.change || 0) >= 0 ? 'text-green-600' : 'text-red-600'
                           }`}>
-                            {item.change >= 0 ? '+' : ''}${item.change.toFixed(2)}
+                            {(item.change || 0) >= 0 ? '+' : ''}${item.change?.toFixed(2) || '0.00'}
                           </span>
                           <span className={`text-sm ${
                             item.changePercent >= 0 ? 'text-green-600' : 'text-red-600'
