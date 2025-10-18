@@ -1,7 +1,7 @@
 'use client'
 
 import Layout from '@/components/Layout'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { ChartBarIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { PredictionsService, PredictionRequest, PredictionResponse } from '@/lib/services/predictions'
@@ -10,7 +10,8 @@ import StockChart from '@/components/StockChart'
 import StockSearchDropdown from '@/components/ui/StockSearchDropdown'
 import AIInsight from '@/components/ai/AIInsight'
 
-export default function PredictionsPage() {
+// Component that uses useSearchParams wrapped in Suspense
+function PredictionsContent() {
   const searchParams = useSearchParams()
   const [symbol, setSymbol] = useState('')
   const [selectedStock, setSelectedStock] = useState<SearchResult | null>(null)
@@ -292,5 +293,14 @@ export default function PredictionsPage() {
         )}
       </div>
     </Layout>
+  )
+}
+
+// Main component with Suspense boundary
+export default function PredictionsPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div><span className="ml-3">Loading predictions...</span></div>}>
+      <PredictionsContent />
+    </Suspense>
   )
 }
