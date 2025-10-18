@@ -241,7 +241,7 @@ export default function ProfilePage() {
           )
         } else {
           showToast(
-            `Role is already synced: ${formatRoleName(result.current_role)}`,
+            `Role is already synced: ${formatRoleName(result.current_role || 'unknown')}`,
             'info'
           )
         }
