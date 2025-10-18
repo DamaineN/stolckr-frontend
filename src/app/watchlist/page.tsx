@@ -216,7 +216,7 @@ export default function WatchlistPage() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="text-sm font-medium text-gray-900">
-                          ${item.price.toFixed(2)}
+                          ${item.price?.toFixed(2) || '0.00'}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
