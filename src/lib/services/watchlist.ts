@@ -40,7 +40,7 @@ export class WatchlistService {
       const response = await apiClient.get('/watchlist')
       return handleApiResponse<WatchlistResponse>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 
@@ -49,7 +49,7 @@ export class WatchlistService {
       const response = await apiClient.post('/watchlist', item)
       return handleApiResponse<WatchlistItem>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 
@@ -57,7 +57,7 @@ export class WatchlistService {
     try {
       await apiClient.delete(`/watchlist/${symbol.toUpperCase()}`)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 
@@ -66,7 +66,7 @@ export class WatchlistService {
       const response = await apiClient.put(`/watchlist/${symbol.toUpperCase()}`, updates)
       return handleApiResponse<WatchlistItem>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 
@@ -75,7 +75,7 @@ export class WatchlistService {
       const response = await apiClient.get('/watchlist/stats')
       return handleApiResponse<WatchlistStats>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 
@@ -84,7 +84,7 @@ export class WatchlistService {
       const response = await apiClient.post('/watchlist/refresh')
       return handleApiResponse<WatchlistResponse>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 

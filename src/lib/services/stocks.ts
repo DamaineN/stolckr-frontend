@@ -77,7 +77,7 @@ export class StocksService {
       })
       return handleApiResponse<StockDataResponse>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 
@@ -86,7 +86,7 @@ export class StocksService {
       const response = await apiClient.get(`/stocks/${symbol.toUpperCase()}/info`)
       return handleApiResponse<StockInfo>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 
@@ -101,7 +101,7 @@ export class StocksService {
       })
       return handleApiResponse<StockDataResponse>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 
@@ -121,7 +121,7 @@ export class StocksService {
       })
       return handleApiResponse<TechnicalIndicatorResponse>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 
@@ -132,7 +132,7 @@ export class StocksService {
       })
       return handleApiResponse<SearchResponse>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 

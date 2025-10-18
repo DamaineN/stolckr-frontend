@@ -138,7 +138,7 @@ export class PredictionsService {
       const response = await apiClient.post('/predictions/predict', mappedRequest)
       return handleApiResponse<PredictionResponse>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 
@@ -156,7 +156,7 @@ export class PredictionsService {
       })
       return handleApiResponse<CachedPredictionsResponse>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 
@@ -165,7 +165,7 @@ export class PredictionsService {
       const response = await apiClient.post('/predictions/train', request)
       return handleApiResponse<TrainingResponse>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 
@@ -174,7 +174,7 @@ export class PredictionsService {
       const response = await apiClient.get('/predictions/models/status')
       return handleApiResponse<ModelStatusResponse>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 
@@ -194,7 +194,7 @@ export class PredictionsService {
       })
       return handleApiResponse<BacktestResponse>(response)
     } catch (error) {
-      handleApiError(error)
+      throw handleApiError(error)
     }
   }
 
