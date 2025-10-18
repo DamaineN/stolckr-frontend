@@ -31,6 +31,7 @@ export interface User {
   created_at: string
   updated_at: string
   last_login?: string
+  profile_picture?: string
 }
 
 export interface VerifyTokenResponse {
