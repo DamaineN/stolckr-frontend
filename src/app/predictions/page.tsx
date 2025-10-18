@@ -38,9 +38,15 @@ export default function PredictionsPage() {
       setSymbol(symbolParam.toUpperCase())
       // Create a mock selected stock for the URL parameter
       setSelectedStock({
-        symbol: symbolParam.toUpperCase(),
-        name: symbolParam.toUpperCase() // We'll use the symbol as name for now
-      })
+      symbol: symbolParam.toUpperCase(),
+      name: symbolParam.toUpperCase(),
+      type: 'stock',
+      region: 'US', 
+      marketOpen: '',
+      marketClose: '',
+      timezone: 'EST',
+      currency: 'USD'
+    } as SearchResult)
     }
   }, [searchParams])
 
