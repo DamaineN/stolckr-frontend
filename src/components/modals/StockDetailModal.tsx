@@ -74,9 +74,9 @@ export default function StockDetailModal({
   const calculatePriceChange = () => {
     if (!realTimeStock && !watchlistItem) return null
     
-    const currentPrice = realTimeStock?.price || watchlistItem.price
-    const change = realTimeStock?.change || watchlistItem.change
-    const changePercent = realTimeStock?.changePercent || watchlistItem.changePercent
+    const currentPrice = realTimeStock?.price || watchlistItem.price || 0
+    const change = realTimeStock?.change || watchlistItem.change || 0
+    const changePercent = realTimeStock?.changePercent || watchlistItem.changePercent || 0
     
     return {
       currentPrice: currentPrice.toFixed(2),
