@@ -227,9 +227,9 @@ export default function WatchlistPage() {
                             {(item.change || 0) >= 0 ? '+' : ''}${item.change?.toFixed(2) || '0.00'}
                           </span>
                           <span className={`text-sm ${
-                            item.changePercent >= 0 ? 'text-green-600' : 'text-red-600'
+                            (item.changePercent || 0) >= 0 ? 'text-green-600' : 'text-red-600'
                           }`}>
-                            ({item.changePercent >= 0 ? '+' : ''}{item.changePercent.toFixed(2)}%)
+                            ({(item.changePercent || 0) >= 0 ? '+' : ''}{item.changePercent?.toFixed(2) || '0.00'}%)
                           </span>
                         </div>
                       </td>

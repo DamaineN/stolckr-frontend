@@ -158,7 +158,7 @@ export default function Dashboard() {
                         <span className="text-sm text-gray-600 font-medium">{prediction.model}</span>
                       </td>
                       <td className="px-8 py-5 whitespace-nowrap">
-                        <span className="text-sm font-semibold text-gray-900">${prediction.prediction ? prediction.prediction.toFixed(2) : prediction.predicted_price ? prediction.predicted_price.toFixed(2) : 'N/A'}</span>
+                        <span className="text-sm font-semibold text-gray-900">${prediction.prediction?.toFixed(2) || prediction.predicted_price?.toFixed(2) || '0.00'}</span>
                       </td>
                       <td className="px-8 py-5 whitespace-nowrap">
                         <span className={`text-sm font-medium ${

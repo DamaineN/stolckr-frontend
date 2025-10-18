@@ -376,11 +376,11 @@ const SimplePaperTrading: React.FC = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Return</p>
-                <p className={`text-2xl font-bold ${portfolio.total_return >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                  {formatPercent(portfolio.total_return_percent)}
+                <p className={`text-2xl font-bold ${(portfolio.total_return || 0) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  {formatPercent(portfolio.total_return_percent || 0)}
                 </p>
               </div>
-              {portfolio.total_return >= 0 ? (
+              {(portfolio.total_return || 0) >= 0 ? (
                 <TrendingUp className="h-8 w-8 text-green-500" />
               ) : (
                 <TrendingDown className="h-8 w-8 text-red-500" />
@@ -562,7 +562,7 @@ const SimplePaperTrading: React.FC = () => {
                   <div key={symbol} className="border rounded-lg p-4">
                     <div className="flex items-center justify-between mb-2">
                       <h3 className="font-semibold text-lg">{symbol}</h3>
-                      <Badge variant={position.unrealized_pnl && position.unrealized_pnl >= 0 ? 'default' : 'destructive'}>
+                      <Badge variant={(position.unrealized_pnl || 0) >= 0 ? 'default' : 'destructive'}>
                         {position.unrealized_pnl_percent ? formatPercent(position.unrealized_pnl_percent) : 'N/A'}
                       </Badge>
                     </div>
@@ -581,7 +581,7 @@ const SimplePaperTrading: React.FC = () => {
                       </div>
                       <div>
                         <p className="text-gray-600">P&L</p>
-                        <p className={`font-medium ${position.unrealized_pnl && position.unrealized_pnl >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                        <p className={`font-medium ${(position.unrealized_pnl || 0) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                           {position.unrealized_pnl ? formatCurrency(position.unrealized_pnl) : 'N/A'}
                         </p>
                       </div>
@@ -611,12 +611,12 @@ const SimplePaperTrading: React.FC = () => {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Win Rate:</span>
-                    <span className="font-medium">{tradeHistory.summary.win_rate.toFixed(1)}%</span>
+                    <span className="font-medium">{tradeHistory.summary.win_rate?.toFixed(1) || '0.0'}%</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Realized P&L:</span>
-                    <span className={`font-medium ${tradeHistory.summary.total_realized_pnl >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                      {formatCurrency(tradeHistory.summary.total_realized_pnl)}
+                    <span className={`font-medium ${(tradeHistory.summary.total_realized_pnl || 0) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                      {formatCurrency(tradeHistory.summary.total_realized_pnl || 0)}
                     </span>
                   </div>
                   <div className="flex justify-between">
@@ -659,8 +659,8 @@ const SimplePaperTrading: React.FC = () => {
                         <div className="text-right">
                           <p className="font-medium">{formatCurrency(trade.total_amount)}</p>
                           {trade.profit_loss !== undefined && (
-                            <p className={`text-sm ${trade.profit_loss >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                              {formatCurrency(trade.profit_loss)}
+                            <p className={`text-sm ${(trade.profit_loss || 0) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                              {formatCurrency(trade.profit_loss || 0)}
                             </p>
                           )}
                           <p className="text-xs text-gray-500">

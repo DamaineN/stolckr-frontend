@@ -12,17 +12,19 @@ export function RealTimeStockPrice({
   showSymbol = true, 
   className = '' 
 }: RealTimeStockPriceProps) {
-  const isPositive = stock.change >= 0
+  const isPositive = (stock.change || 0) >= 0
   const changeColor = isPositive ? 'text-green-600' : 'text-red-600'
   const bgColor = isPositive ? 'bg-green-50' : 'bg-red-50'
 
   const formatPrice = (price: number) => {
-    return price.toFixed(2)
+    return price?.toFixed(2) || '0.00'
   }
 
   const formatChange = (change: number, changePercent: number) => {
-    const sign = change >= 0 ? '+' : ''
-    return `${sign}${change.toFixed(2)} (${sign}${changePercent.toFixed(2)}%)`
+    const safeChange = change || 0
+    const safePercent = changePercent || 0
+    const sign = safeChange >= 0 ? '+' : ''
+    return `${sign}${safeChange.toFixed(2)} (${sign}${safePercent.toFixed(2)}%)`
   }
 
   const formatTime = (timestamp: string) => {

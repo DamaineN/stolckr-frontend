@@ -262,13 +262,13 @@ export default function PredictionsPage() {
                       <tr key={index} className="hover:bg-gray-50">
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{pred.date}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-blue-700">
-                          ${pred.predicted_price.toFixed(2)}
+                          ${pred.predicted_price?.toFixed(2) || '0.00'}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-700">
-                          ${pred.lower_bound.toFixed(2)}
+                          ${pred.lower_bound?.toFixed(2) || '0.00'}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-700">
-                          ${pred.upper_bound.toFixed(2)}
+                          ${pred.upper_bound?.toFixed(2) || '0.00'}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">
                           {(pred.confidence * 100).toFixed(0)}%

@@ -252,13 +252,13 @@ export default function AIInsight({ symbol, userRole = 'beginner', onInsightGene
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-gray-50 p-3 rounded-lg">
             <h5 className="text-xs font-medium text-gray-500 uppercase mb-1">Current Price</h5>
-            <p className="text-lg font-bold text-gray-900">${insight.current_price.toFixed(2)}</p>
+            <p className="text-lg font-bold text-gray-900">${insight.current_price?.toFixed(2) || '0.00'}</p>
           </div>
           
           {insight.target_price && (
             <div className="bg-gray-50 p-3 rounded-lg">
               <h5 className="text-xs font-medium text-gray-500 uppercase mb-1">Target Price</h5>
-              <p className="text-lg font-bold text-blue-600">${insight.target_price.toFixed(2)}</p>
+              <p className="text-lg font-bold text-blue-600">${insight.target_price?.toFixed(2) || '0.00'}</p>
             </div>
           )}
           
@@ -309,9 +309,9 @@ export default function AIInsight({ symbol, userRole = 'beginner', onInsightGene
                   </span>
                 </div>
                 <div className="text-right">
-                  <p className="font-bold text-gray-900">${prediction.predicted_7d.toFixed(2)}</p>
-                  <p className={`text-xs ${prediction.change_7d >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                    {prediction.change_7d >= 0 ? '+' : ''}{prediction.change_7d.toFixed(1)}%
+                  <p className="font-bold text-gray-900">${prediction.predicted_7d?.toFixed(2) || '0.00'}</p>
+                  <p className={`text-xs ${(prediction.change_7d || 0) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    {(prediction.change_7d || 0) >= 0 ? '+' : ''}{prediction.change_7d?.toFixed(1) || '0.0'}%
                   </p>
                 </div>
               </div>
@@ -335,27 +335,27 @@ export default function AIInsight({ symbol, userRole = 'beginner', onInsightGene
             <div className="mt-3 grid grid-cols-2 md:grid-cols-3 gap-3 p-4 bg-gray-50 rounded-lg">
               <div>
                 <h6 className="text-xs font-medium text-gray-500 uppercase">RSI</h6>
-                <p className="font-bold">{insight.technical_indicators.rsi.toFixed(1)}</p>
+                <p className="font-bold">{insight.technical_indicators.rsi?.toFixed(1) || '0.0'}</p>
               </div>
               <div>
                 <h6 className="text-xs font-medium text-gray-500 uppercase">vs SMA 20</h6>
-                <p className={`font-bold ${insight.technical_indicators.price_vs_sma_20 >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                  {insight.technical_indicators.price_vs_sma_20.toFixed(1)}%
+                <p className={`font-bold ${(insight.technical_indicators.price_vs_sma_20 || 0) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  {insight.technical_indicators.price_vs_sma_20?.toFixed(1) || '0.0'}%
                 </p>
               </div>
               <div>
                 <h6 className="text-xs font-medium text-gray-500 uppercase">Volatility</h6>
-                <p className="font-bold">{insight.technical_indicators.volatility.toFixed(1)}%</p>
+                <p className="font-bold">{insight.technical_indicators.volatility?.toFixed(1) || '0.0'}%</p>
               </div>
               <div>
                 <h6 className="text-xs font-medium text-gray-500 uppercase">1D Change</h6>
-                <p className={`font-bold ${insight.technical_indicators.price_change_1d >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                  {insight.technical_indicators.price_change_1d.toFixed(1)}%
+                <p className={`font-bold ${(insight.technical_indicators.price_change_1d || 0) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  {insight.technical_indicators.price_change_1d?.toFixed(1) || '0.0'}%
                 </p>
               </div>
               <div>
                 <h6 className="text-xs font-medium text-gray-500 uppercase">Volume Ratio</h6>
-                <p className="font-bold">{insight.technical_indicators.volume_ratio.toFixed(1)}x</p>
+                <p className="font-bold">{insight.technical_indicators.volume_ratio?.toFixed(1) || '0.0'}x</p>
               </div>
               <div>
                 <h6 className="text-xs font-medium text-gray-500 uppercase">Bollinger</h6>
