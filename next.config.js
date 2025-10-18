@@ -4,6 +4,9 @@ const nextConfig = {
     // Temporarily ignore TypeScript errors during development
     ignoreBuildErrors: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   async rewrites() {
     return [
       {
@@ -15,4 +18,3 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
-module.exports = { eslint: { ignoreDuringBuilds: true } }

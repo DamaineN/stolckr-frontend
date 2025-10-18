@@ -171,7 +171,7 @@ export class StocksService {
       // Validate data structure
       if (!data || typeof data !== 'object') {
         console.warn(`Invalid data object at index ${index}:`, data)
-        data = { timestamp: null, close: 0, volume: 0 } // Use fallback
+        data = { timestamp: new Date().toISOString(), open: 0, high: 0, low: 0, close: 0, volume: 0 } // Use fallback
       }
       
       let dateString: string
