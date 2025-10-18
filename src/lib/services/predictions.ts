@@ -278,6 +278,6 @@ export class PredictionsService {
 
   // Helper method to get confidence level display
   static getConfidenceLevelDisplay(level: number): string {
-    return `${(level * 100).toFixed(0)}%`
+    return `${((level || 0) * 100).toFixed(0)}%`
   }
 }

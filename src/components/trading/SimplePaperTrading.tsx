@@ -194,11 +194,11 @@ const SimplePaperTrading: React.FC = () => {
             symbol: symbol.toUpperCase(),
             action: action as 'buy' | 'sell',
             quantity: parseInt(quantity),
-            price: stockPrice,
-            total_amount: stockPrice * parseInt(quantity),
+            price: stockPrice || 0,
+            total_amount: (stockPrice || 0) * parseInt(quantity),
             ...data.trade_details // Include profit_loss if it's a sell trade
           },
-          stockPrice: stockPrice
+          stockPrice: stockPrice || 0
         };
         
         // Reload portfolio and history

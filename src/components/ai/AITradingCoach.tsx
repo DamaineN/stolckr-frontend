@@ -75,20 +75,20 @@ const AITradingCoach: React.FC<AITradingCoachProps> = ({
     if (tradePercent > 20) {
       analysis.feedback.push({
         type: 'warning',
-        message: `Trade size is ${tradePercent.toFixed(1)}% of portfolio - consider smaller positions to manage risk`,
+        message: `Trade size is ${tradePercent?.toFixed(1) || '0.0'}% of portfolio - consider smaller positions to manage risk`,
         icon: 'warning'
       });
       analysis.overall_grade = 'C+';
     } else if (tradePercent < 2) {
       analysis.feedback.push({
         type: 'info',
-        message: `Small position (${tradePercent.toFixed(1)}%) - good for learning, but may limit profit potential`,
+        message: `Small position (${tradePercent?.toFixed(1) || '0.0'}%) - good for learning, but may limit profit potential`,
         icon: 'info'
       });
     } else {
       analysis.feedback.push({
         type: 'success',
-        message: `Good position sizing at ${tradePercent.toFixed(1)}% of portfolio`,
+        message: `Good position sizing at ${tradePercent?.toFixed(1) || '0.0'}% of portfolio`,
         icon: 'check'
       });
     }
@@ -98,14 +98,14 @@ const AITradingCoach: React.FC<AITradingCoachProps> = ({
       if (tradeDetails.profit_loss > 0) {
         analysis.feedback.push({
           type: 'success',
-          message: `Profitable trade! +${tradeDetails.profit_loss_percent?.toFixed(2)}% return`,
+          message: `Profitable trade! +${tradeDetails.profit_loss_percent?.toFixed(2) || '0.00'}% return`,
           icon: 'trophy'
         });
         analysis.lessons.push("Taking profits at the right time is crucial for successful trading");
       } else {
         analysis.feedback.push({
           type: 'warning',
-          message: `Loss on this trade: ${tradeDetails.profit_loss_percent?.toFixed(2)}% - consider stop-loss strategies`,
+          message: `Loss on this trade: ${tradeDetails.profit_loss_percent?.toFixed(2) || '0.00'}% - consider stop-loss strategies`,
           icon: 'warning'
         });
         analysis.lessons.push("Losses are part of trading - focus on risk management and learning from mistakes");
@@ -116,7 +116,7 @@ const AITradingCoach: React.FC<AITradingCoachProps> = ({
     if (tradeDetails.action === 'buy') {
       analysis.feedback.push({
         type: 'info',
-        message: `Bought ${tradeDetails.quantity} shares at $${tradeDetails.price.toFixed(2)} - monitor price movements closely`,
+        message: `Bought ${tradeDetails.quantity} shares at $${tradeDetails.price?.toFixed(2) || '0.00'} - monitor price movements closely`,
         icon: 'chart'
       });
       analysis.lessons.push("After buying, set target prices for both profits and losses");
@@ -127,14 +127,14 @@ const AITradingCoach: React.FC<AITradingCoachProps> = ({
       if (winRate > 60) {
         analysis.feedback.push({
           type: 'success',
-          message: `Strong performance! ${winRate.toFixed(1)}% win rate across ${totalTrades} trades`,
+          message: `Strong performance! ${winRate?.toFixed(1) || '0.0'}% win rate across ${totalTrades} trades`,
           icon: 'trophy'
         });
         analysis.next_steps.push("Consider increasing position sizes slightly as your skills improve");
       } else if (winRate < 40) {
         analysis.feedback.push({
           type: 'warning',
-          message: `Win rate is ${winRate.toFixed(1)}% - focus on improving your strategy`,
+          message: `Win rate is ${winRate?.toFixed(1) || '0.0'}% - focus on improving your strategy`,
           icon: 'warning'
         });
         analysis.next_steps.push("Review your losing trades to identify common patterns");
@@ -231,11 +231,11 @@ const AITradingCoach: React.FC<AITradingCoachProps> = ({
                     </div>
                     <div>
                       <p className="text-gray-500">Price</p>
-                      <p className="font-semibold">${tradeAnalysis.tradeDetails.price.toFixed(2)}</p>
+                      <p className="font-semibold">${tradeAnalysis.tradeDetails.price?.toFixed(2) || '0.00'}</p>
                     </div>
                     <div>
                       <p className="text-gray-500">Total</p>
-                      <p className="font-semibold">${tradeAnalysis.tradeDetails.total_amount.toFixed(2)}</p>
+                      <p className="font-semibold">${tradeAnalysis.tradeDetails.total_amount?.toFixed(2) || '0.00'}</p>
                     </div>
                   </div>
                 </CardContent>

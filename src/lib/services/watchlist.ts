@@ -128,7 +128,8 @@ export class WatchlistService {
   }
 
   static formatPercent(value: number): string {
-    return `${value >= 0 ? '+' : ''}${value.toFixed(2)}%`
+    const safeValue = value || 0
+    return `${safeValue >= 0 ? '+' : ''}${safeValue.toFixed(2)}%`
   }
 
   static getChangeColor(change: number): string {
