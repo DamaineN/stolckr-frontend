@@ -236,7 +236,7 @@ export default function ProfilePage() {
         
         if (result.role_updated) {
           showToast(
-            `Role updated from ${formatRoleName(result.previous_role)} to ${formatRoleName(result.new_role)}!`,
+            `Role updated from ${formatRoleName(result.previous_role || 'unknown')} to ${formatRoleName(result.new_role || 'unknown')}!`,
             'success'
           )
         } else {
