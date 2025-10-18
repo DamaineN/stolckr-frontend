@@ -3,8 +3,16 @@ import axios from 'axios'
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || ''
 export const API_VERSION = 'v1'
 
+// Remove trailing slash from base URL to avoid double slashes
+const cleanBaseUrl = API_BASE_URL.endsWith('/') ? API_BASE_URL.slice(0, -1) : API_BASE_URL
+
+// Debug: Log the URL construction
+console.log('🔍 Debug - Raw API_BASE_URL:', API_BASE_URL)
+console.log('🔍 Debug - Clean base URL:', cleanBaseUrl)
+console.log('🔍 Debug - Final baseURL:', `${cleanBaseUrl}/api/${API_VERSION}`)
+
 export const apiClient = axios.create({
-  baseURL: `${API_BASE_URL}/api/${API_VERSION}`,
+  baseURL: `${cleanBaseUrl}/api/${API_VERSION}`,
   timeout: 30000,
   headers: { 'Content-Type': 'application/json' },
 })
